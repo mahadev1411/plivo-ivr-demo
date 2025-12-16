@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Plivo IVR Demo</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="container">
+    <div class="card">
+      <h1>📞 Plivo IVR Demo</h1>
+      <p class="subtitle">
+        Trigger a multi-level IVR call using Plivo Voice API
+      </p>
+
+      <button onclick="triggerCall()">Trigger Outbound Call</button>
+
+      <p id="status" class="status"></p>
+    </div>
+  </div>
+
+  <script>
+    async function triggerCall() {
+      const status = document.getElementById("status");
+      status.innerText = "Placing call...";
+
+      try {
+        const res = await fetch("/call", { method: "POST" });
+        const data = await res.json();
+
+        status.innerText = "Call initiated successfully!";
+      } catch (err) {
+        status.innerText = "Error triggering call.";
+      }
+    }
+  </script>
+
+</body>
+</html>

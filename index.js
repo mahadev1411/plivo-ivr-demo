@@ -4,9 +4,11 @@ const plivo = require("plivo");
 require("dotenv").config();
 
 
+
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(express.static("public"));
 
 const client = new plivo.Client(
   process.env.PLIVO_AUTH_ID,
